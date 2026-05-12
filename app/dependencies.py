@@ -14,11 +14,11 @@ def get_current_user(
     token = credentials.credentials
     payload = decode_access_token(token)
     if payload is None:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token không hợp lệ")
+        raise HTTPException(status_code=401, detail="Token không hợp lệ")
     user_id = payload.get("sub")
     if user_id is None:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token thiếu thông tin")
+        raise HTTPException(401, detail="Token thiếu thông tin")
     user = db.query(User).filter(User.id == int(user_id)).first()
     if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Người dùng không tồn tại")
+        raise HTTPException(404, detail="Người dùng không tồn tại")
     return user

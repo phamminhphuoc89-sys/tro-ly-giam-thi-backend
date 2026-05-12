@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, UploadFile, File
+from fastapi import APIRouter, Depends, UploadFile, File, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.file import UserFile
@@ -11,11 +11,10 @@ router = APIRouter()
 @router.post("/upload", response_model=FileOut)
 async def upload_file(
     file: UploadFile = File(...),
-    file_type: str = "input_excel",   # có thể cho phép chọn
+    file_type: str = "input_excel",
     db: Session = Depends(get_db),
     current_user = Depends(get_current_user)
 ):
-    # Lưu file
     file_path = await save_upload_file(file, current_user.id)
     db_file = UserFile(
         owner_id=current_user.id,

@@ -1,58 +1,11 @@
-# ===== Python =====
 __pycache__/
 *.py[cod]
-*.pyc
-*.pyo
-*.pyd
-*.so
-*.egg-info/
-dist/
-build/
-*.egg
-.Python
-env/
+.env
+data/
+uploads/
 venv/
 .venv/
-ENV/
-
-# ===== Môi trường & cấu hình nhạy cảm =====
-.env
-.env.local
-.env.*.local
-*.ini
-!alembic.ini
-
-# ===== Database =====
-data/
-*.db
-*.sqlite
-*.sqlite3
-
-# ===== Upload & tạm =====
-uploads/*
-!uploads/.gitkeep
-temp/
-tmp/
-
-# ===== IDE & hệ điều hành =====
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# ===== Log =====
 *.log
-logs/
-
-# ===== File cấu hình app_data riêng (danh sách học sinh local) =====
 app_data/
-*.json
-!sample.json
-
-# ===== Khác =====
-*.bak
-*.orig

@@ -1,4 +1,3 @@
-# app/models/job.py
 from sqlalchemy import Column, Integer, String, JSON, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -8,7 +7,7 @@ class ProcessingJob(Base):
     __tablename__ = "processing_jobs"
     id = Column(Integer, primary_key=True, index=True)
     owner_id = Column(Integer, ForeignKey("users.id"))
-    job_type = Column(String)   # 'bao_cao_thi_dua', 'filter_ai', 'error_extract', 'score'
+    job_type = Column(String)  # 'bao_cao_thi_dua', 'filter_ai', 'error_extract', 'score'
     status = Column(String, default="pending")
     input_files = Column(JSON)
     params = Column(JSON, nullable=True)

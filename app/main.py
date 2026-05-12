@@ -5,15 +5,14 @@ from app.database import engine, Base
 from app.config import settings
 from app.routes import auth, files, jobs, students
 
-# Tạo các bảng trong database (nếu chưa có)
+# Tạo bảng
 Base.metadata.create_all(bind=engine)
 
-# Tạo thư mục uploads nếu chưa tồn tại
+# Đảm bảo thư mục upload tồn tại
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
 
 app = FastAPI(title="Trợ lý Giáo vụ API")
 
-# Cho phép tất cả origins trong quá trình phát triển (sau này giới hạn lại)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
