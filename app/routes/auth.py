@@ -22,9 +22,9 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
     return user
 
 @router.post("/login")
-def login(user_in: UserLogin, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == user_in.email).first()
-    if not user or not verify_password(user_in.password, user.hashed_password):
-        raise HTTPException(401, "Sai thông tin đăng nhập")
+def login(form_data: UserLogin, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == form_data.email).first()
+    if not user or not verify_password(form_data.password, user.hashed_password):
+        raise HTTPException(status_code=401, detail="Sai thông tin đăng nhập")
     token = create_access_token({"sub": str(user.id)})
     return {"access_token": token, "token_type": "bearer"}

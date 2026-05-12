@@ -4,7 +4,7 @@ from datetime import datetime
 
 class JobCreate(BaseModel):
     job_type: str
-    input_files: Dict[str, int]   # key -> file_id
+    input_files: Dict[str, int]
     params: Optional[Dict[str, Any]] = {}
 
 class JobOut(BaseModel):
@@ -18,4 +18,4 @@ class JobOut(BaseModel):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
